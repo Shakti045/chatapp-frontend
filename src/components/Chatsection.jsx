@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import Chats from "./Chats";
 import { useNavigate } from "react-router";
 import io  from 'socket.io-client';
-const socket=io.connect("http://localhost:4000")
+const socket=io.connect("https://shaktichat.onrender.com")
 export default function Chatsection({username}) {
   const {receiver,receivertoken,sendertoken,show,width}=useContext(Appcontext);
   const [showrobot,setshowrobot]=useState(true);
