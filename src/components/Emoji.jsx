@@ -1,6 +1,9 @@
 import axios from "axios"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { Appcontext } from "../Appcontext/Appcontextprovider";
+import loaderimage from "../assets/loader.gif"
 function Emoji({data,setdata}) {
 const navigate=useNavigate();
   const toastOptions = {
@@ -11,7 +14,7 @@ const navigate=useNavigate();
     theme: "dark",
   };
 
-
+const {loader,setloader}=useContext(Appcontext);
   const types=["Fluffy","Angel","Baby","Cookie","Coco","Lola","Garfield","Gizmo","Kiki","Casper","Chloe","Bailey","George","Callie","Bear","Annie","Jasper","Daisy"]
   function avatarurl(avatarname){
     setdata(()=>{
@@ -19,9 +22,12 @@ const navigate=useNavigate();
     })
   }
   async function signup(){
+    setloader(true);
     try{
      const output=await axios.post("https://shaktichat.onrender.com/api/v1/signup",data)
+     setloader(false);
       if(output.status===200){
+        
         toast.success("Accout created successfully",toastOptions)
        
           navigate("/")
@@ -29,10 +35,14 @@ const navigate=useNavigate();
       }
     }catch(err){
       toast.dark(err.response.data.Message);
+    }finally{
+      setloader(false);
     }
   }
   return (
-    <div className=" flex flex-col items-center gap-6">
+    <>
+     {
+      loader===true?<img src={loaderimage}></img>:<div className=" flex flex-col items-center gap-6">
       <h1 className=" text-white text-4xl font-bold">Let's Choose Your Avatar</h1>
    
       <div className=" grid lg:grid-cols-6 grid-cols-3 gap-4">
@@ -47,6 +57,8 @@ const navigate=useNavigate();
       </div>
       <button onClick={signup} className=" text-white text-3xl  p-3 rounded-lg bg-violet-800">CREATE ACCOUNT</button>
       </div>
+     }
+    </>
   )
 }
 

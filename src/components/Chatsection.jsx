@@ -7,21 +7,24 @@ import Chats from "./Chats";
 import { useNavigate } from "react-router";
 import io  from 'socket.io-client';
 const socket=io.connect("http://localhost:4000")
-
+import loaderimage from "../assets/loader.gif"
 export default function Chatsection({username}) {
   const {receiver,receivertoken,sendertoken,show,width}=useContext(Appcontext);
   const [showrobot,setshowrobot]=useState(true);
   const [chats,setchats]=useState([]);
   const [prevroom,setprevroom]=useState();
   const navigate=useNavigate();
-
+const [loader,setloader]=useContext(Appcontext);
   async function getdata(){
     try{
+      setloader(true);
       const output=await axios.post("https://shaktichat.onrender.com/api/v1/getchats",{"user2":receiver,"token":Cookies.get('chatapptoken')})
       setchats(output.data.Chats);
       // console.log(output.data.Chats);
     }catch(err){
       console.log(err);
+    }finally{
+      setloader(false);
     }
   }
 
@@ -62,15 +65,15 @@ function updation(){
   return (
   <>
    {
-    showrobot===true?(  <div className=" flex flex-col items-center justify-center">
+   loader===true?<img src={loaderimage}></img>:showrobot===true?(  <div className=" flex flex-col items-center justify-center">
        
-    <img className="lg:h-[300px] " src={anime} alt="Roboto"></img>
-    <h1 className=" text-3xl text-white">Welcome <span className=" text-blue-700 font-bold">{username}</span>,</h1>
-    <h1 className="text-3xl text-white">Please select a  chat <br></br> from menu option to <br></br> start chatting</h1>
-    <div className=" pt-5 flex gap-3">
-         <button  className=" bg-blue-900 text-white p-2 rounded-md" onClick={()=>navigate("/addfriend")}>Add New Friend+</button>
-          <button onClick={()=>navigate("/addfriend")} className=" bg-blue-900 text-white p-2 rounded-md">See friend requests</button>
-       </div>
+   <img className="lg:h-[300px] " src={anime} alt="Roboto"></img>
+   <h1 className=" text-3xl text-white">Welcome <span className=" text-blue-700 font-bold">{username}</span>,</h1>
+   <h1 className="text-3xl text-white">Please select a  chat <br></br> from menu option to <br></br> start chatting</h1>
+   <div className=" pt-5 flex gap-3">
+        <button  className=" bg-blue-900 text-white p-2 rounded-md" onClick={()=>navigate("/addfriend")}>Add New Friend+</button>
+         <button onClick={()=>navigate("/addfriend")} className=" bg-blue-900 text-white p-2 rounded-md">See friend requests</button>
+      </div>
 </div>):(<Chats chats={chats}></Chats>)
    }
   </>

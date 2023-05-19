@@ -11,7 +11,7 @@ import {IoCloudUploadSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 import io  from 'socket.io-client';
 import Loader from "./loader";
-const socket=io.connect("http://localhost:4000")
+const socket=io.connect("https://shaktichat.onrender.com")
 export default function Sendmessage() {
     const [showemoji,setshowemoji]=useState(false);
     const token=Cookies.get("chatapptoken");
@@ -37,9 +37,9 @@ export default function Sendmessage() {
    const room=receivertoken+sendtoken;
     async function addmessage(){
         try{
+        socket.emit("send_message",{message:mesage.v,sender:sender,room:room});
          await axios.post("https://shaktichat.onrender.com/api/v1/addchat",{"token":token,"message":mesage.v,"receiver":receiver})
-         socket.emit("send_message",{message:mesage.v,sender:sender,room:room});
-          setmeassage(()=>{
+         setmeassage(()=>{
             return {v:""}
            })
         }catch(err){
