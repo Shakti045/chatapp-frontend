@@ -30,7 +30,7 @@ function Login() {
             return;
         }
         try{
-            const output=await axios.post(`http://localhost:4000/api/v1/login`,data)
+            const output=await axios.post(`https://shaktichat.onrender.com/api/v1/login`,data)
             if(output.status===200){
               // console.log(output.data.chatapptoken);
             Cookies.set("chatapptoken",output.data.token)

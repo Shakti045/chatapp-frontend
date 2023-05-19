@@ -37,7 +37,7 @@ export default function Sendmessage() {
    const room=receivertoken+sendtoken;
     async function addmessage(){
         try{
-         await axios.post("http://localhost:4000/api/v1/addchat",{"token":token,"message":mesage.v,"receiver":receiver})
+         await axios.post("https://shaktichat.onrender.com/api/v1/addchat",{"token":token,"message":mesage.v,"receiver":receiver})
          socket.emit("send_message",{message:mesage.v,sender:sender,room:room});
           setmeassage(()=>{
             return {v:""}
@@ -71,7 +71,7 @@ function filehandler(e){
       const formData = new FormData();
       formData.append('file', file);
       
-     const {data}=await axios.post('http://localhost:4000/api/v1/upload', formData, {
+     const {data}=await axios.post('https://shaktichat.onrender.com/api/v1/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

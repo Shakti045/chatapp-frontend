@@ -15,7 +15,7 @@ function Chat(){
     const {setsender,width,show,setshow}=useContext(Appcontext);
     async function getuserdata(){
     try{
-        const output=await axios.post("http://localhost:4000/api/v1/getuserdetails",{"token":Cookies.get('chatapptoken')})
+        const output=await axios.post("https://shaktichat.onrender.com/api/v1/getuserdetails",{"token":Cookies.get('chatapptoken')})
          setuserdata(output.data.User);
          setsender(output.data.User.username)
     }catch(err){

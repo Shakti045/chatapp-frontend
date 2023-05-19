@@ -13,7 +13,7 @@ export default function Frequsts({_id,username,avatarurl}) {
       };
 async function acceptrequest(){
     try{
-     const {data}=await axios.post("http://localhost:4000/api/v1/acceptfriend",{"token":token,"senderid":_id})
+     const {data}=await axios.post("https://shaktichat.onrender.com/api/v1/acceptfriend",{"token":token,"senderid":_id})
      toast.dark(data.Message,toastOptions)
     }catch(err){
         toast.dark(err.response.data.Message,toastOptions);
@@ -21,7 +21,7 @@ async function acceptrequest(){
 }
 async function declinefriend(){
     try{
-     const {data}=await axios.post("http://localhost:4000/api/v1/declinefriend",{"token":token,"senderid":_id})
+     const {data}=await axios.post("https://shaktichat.onrender.com/api/v1/declinefriend",{"token":token,"senderid":_id})
      toast.dark(data.Message,toastOptions)
     }catch(err){
         toast.dark(err.response.data.Message,toastOptions);

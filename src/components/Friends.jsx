@@ -6,7 +6,7 @@ export default function Friends() {
     const [Friends,setFriends]=useState([]);
   async  function getfriends(){
         try{
-           const data=await axios.post("http://localhost:4000/api/v1/getallfriends",{"token":Cookies.get('chatapptoken')})
+           const data=await axios.post("https://shaktichat.onrender.com/api/v1/getallfriends",{"token":Cookies.get('chatapptoken')})
            setFriends(data.data.Friends);
         }catch(err){
             console.log(err);

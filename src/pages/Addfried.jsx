@@ -22,7 +22,7 @@ export default function Addfried() {
   }
   async function searchfriend(){
     try{
-      const output=await axios.post(`http://localhost:4000/api/v1/getuser`,{"username":searchvalue})
+      const output=await axios.post(`https://shaktichat.onrender.com/api/v1/getuser`,{"username":searchvalue})
       setsearchvalue("");
       setsearchdata(output.data.User);
     }catch(err){
@@ -38,7 +38,7 @@ export default function Addfried() {
 
   async function getfriendrequests(){
     try{
-        const {data}=await axios.post("http://localhost:4000/api/v1/getfrequests",{"token":token})
+        const {data}=await axios.post("https://shaktichat.onrender.com/api/v1/getfrequests",{"token":token})
         toast.dark(data.Message,toastOptions)
         setrequests(data.Friendrequests);
     }catch(err){

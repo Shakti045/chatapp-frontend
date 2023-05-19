@@ -17,7 +17,7 @@ export default function Chatsection({username}) {
 
   async function getdata(){
     try{
-      const output=await axios.post("http://localhost:4000/api/v1/getchats",{"user2":receiver,"token":Cookies.get('chatapptoken')})
+      const output=await axios.post("https://shaktichat.onrender.com/api/v1/getchats",{"user2":receiver,"token":Cookies.get('chatapptoken')})
       setchats(output.data.Chats);
       // console.log(output.data.Chats);
     }catch(err){

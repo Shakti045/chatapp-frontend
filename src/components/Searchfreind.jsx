@@ -14,7 +14,7 @@ export default function Searchfreind({_id,username,avatarurl,friends}) {
 
  async function sendfriendrequest(){
     try{
-   const {data}=await axios.post("http://localhost:4000/api/v1/sendrequest",{"token":token,"receiverid":_id})
+   const {data}=await axios.post("https://shaktichat.onrender.com/api/v1/sendrequest",{"token":token,"receiverid":_id})
     toast.dark(data.Message,toastOptions)
     }catch(err){
         toast.dark(err.response.data.Message,toastOptions);
@@ -23,7 +23,7 @@ export default function Searchfreind({_id,username,avatarurl,friends}) {
 
  async function deleterequest(){
     try{
-   const {data}=await axios.post("http://localhost:4000/api/v1/deleterequest",{"token":token,"receiverid":_id})
+   const {data}=await axios.post("https://shaktichat.onrender.com/api/v1/deleterequest",{"token":token,"receiverid":_id})
     toast.dark(data.Message,toastOptions)
     }catch(err){
         toast.dark(err.response.data.Message,toastOptions);

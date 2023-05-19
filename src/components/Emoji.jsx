@@ -20,7 +20,7 @@ const navigate=useNavigate();
   }
   async function signup(){
     try{
-     const output=await axios.post("http://localhost:4000/api/v1/signup",data)
+     const output=await axios.post("https://shaktichat.onrender.com/api/v1/signup",data)
       if(output.status===200){
         toast.success("Accout created successfully",toastOptions)
        
