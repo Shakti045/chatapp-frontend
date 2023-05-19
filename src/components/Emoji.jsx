@@ -42,7 +42,7 @@ const {loader,setloader}=useContext(Appcontext);
   return (
     <>
      {
-      loader===true?<img src={loaderimage}></img>:<div className=" flex flex-col items-center gap-6">
+      loader===true?<div className=" w-[100vw] h-[100vh] flex items-center justify-center bg-richblack-900"><img src={loaderimage}></img></div>:<div className=" flex flex-col items-center gap-6">
       <h1 className=" text-white text-4xl font-bold">Let's Choose Your Avatar</h1>
    
       <div className=" grid lg:grid-cols-6 grid-cols-3 gap-4">

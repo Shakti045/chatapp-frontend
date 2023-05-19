@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import loaderimage from "../assets/loader.gif"
 import anime from "../assets/robot.gif"
 import { Appcontext } from "../Appcontext/Appcontextprovider"
 import axios from "axios";
@@ -7,14 +8,13 @@ import Chats from "./Chats";
 import { useNavigate } from "react-router";
 import io  from 'socket.io-client';
 const socket=io.connect("http://localhost:4000")
-import loaderimage from "../assets/loader.gif"
 export default function Chatsection({username}) {
   const {receiver,receivertoken,sendertoken,show,width}=useContext(Appcontext);
   const [showrobot,setshowrobot]=useState(true);
   const [chats,setchats]=useState([]);
   const [prevroom,setprevroom]=useState();
   const navigate=useNavigate();
-const [loader,setloader]=useContext(Appcontext);
+const {loader,setloader}=useContext(Appcontext);
   async function getdata(){
     try{
       setloader(true);
@@ -65,7 +65,7 @@ function updation(){
   return (
   <>
    {
-   loader===true?<img src={loaderimage}></img>:showrobot===true?(  <div className=" flex flex-col items-center justify-center">
+  showrobot===true?(  <div className=" flex flex-col items-center justify-center">
        
    <img className="lg:h-[300px] " src={anime} alt="Roboto"></img>
    <h1 className=" text-3xl text-white">Welcome <span className=" text-blue-700 font-bold">{username}</span>,</h1>

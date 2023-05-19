@@ -13,17 +13,18 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import loader from "../assets/loader.gif"
 function Chat(){
     const [userdata,setuserdata]=useState();
-    const {setsender,width,show,setshow,loading,setloading}=useContext(Appcontext);
+    const {setsender,width,show,setshow,loading,setloader}=useContext(Appcontext);
     async function getuserdata(){
     try{
-        setloader(true);
+        console.log("getcalled");
+
         const output=await axios.post("https://shaktichat.onrender.com/api/v1/getuserdetails",{"token":Cookies.get('chatapptoken')})
          setuserdata(output.data.User);
          setsender(output.data.User.username)
     }catch(err){
     toast.dark(err.response.data.Message);
     }finally{
-        setloading(false);
+        setloader(false);
     }
     }
     useEffect(()=>{
@@ -32,7 +33,7 @@ function Chat(){
     return (
        <>
        {
-        loading===true?<img src={loader}></img>: <div className=" h-[100vh] w-[100vw] overflow-hidden flex  bg-gray-900">
+        loading===true?<div className=" w-[100vw] h-[100vh] flex items-center justify-center bg-richblack-900"><img src={loader}  alt="Loader"></img></div>: <div className=" h-[100vh] w-[100vw] overflow-hidden flex  bg-gray-900">
             
         {
             width>=1017?<div className="  w-[20vw]  rounded-lg">

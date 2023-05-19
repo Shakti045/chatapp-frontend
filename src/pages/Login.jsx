@@ -53,8 +53,8 @@ function Login() {
   return (
      <div>
       {
-        loader===true?<div>
-          <img src={loaderimage}></img>
+        loader===true?<div className=" w-[100vw] h-[100vh] flex items-center justify-center bg-richblack-900">
+          <img src={loaderimage} alt="Loader"></img>
         </div>:<div className=" h-[100vh] w-[100vw] flex justify-center items-center bg-gray-900">
         <div className="  flex flex-col gap-4 p-9 rounded-lg bg-richblack-900 text-white">
          <div className=" flex gap-3 items-center">

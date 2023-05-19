@@ -1,12 +1,12 @@
- import { useContext, useState} from "react";
+ import {  useState} from "react";
 import logo from "../assets/logo .svg"
 import Emoji from "../components/Emoji"
 import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
-import { Appcontext } from "../Appcontext/Appcontextprovider";
-import loaderimage from "../assets/loader.gif"
+
+
    function Register() {
-    const [loader,setloader]=useContext(Appcontext);
+   
     const [data,setdata]=useState({username:"",password:"",confirmpassword:"",email:"",avatarurl:""})
     const [showemoji,setshowemoji]=useState(false);
     function changehandler(e){
@@ -28,8 +28,7 @@ import loaderimage from "../assets/loader.gif"
     }
   return (
        <>
-       {
-        loader===true?<img src={loaderimage}></img>:<div className=" h-[100vh] w-[100vw] flex justify-center items-center bg-gray-900">
+       <div className=" h-[100vh] w-[100vw] flex justify-center items-center bg-gray-900">
         {
             showemoji===false?(<div className="  flex flex-col gap-4 p-9 rounded-lg bg-richblack-900 text-white">
             <div className=" flex gap-3 items-center">
@@ -53,7 +52,7 @@ import loaderimage from "../assets/loader.gif"
            )
         }
      </div>
-       }
+       
        </>
          
           
